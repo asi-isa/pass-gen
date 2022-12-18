@@ -1,10 +1,10 @@
 <script setup>
 import { ref, watch } from "vue";
-import { IconContentCopy } from "@iconify-prerendered/vue-mdi";
 
 import Slider from "./components/Slider.vue";
 import Option from "./components/Option.vue";
 import StrengthIndicator from "./components/StrengthIndicator.vue";
+import CopyToClipboard from "./components/CopyToClipboard.vue";
 
 const password = ref("");
 const passwordLength = ref(12);
@@ -68,7 +68,7 @@ watch([passwordLength, options], generatePassword, { deep: true });
         {{ password }}
       </p>
 
-      <IconContentCopy class="text-[#A5FFAF] text-xl cursor-pointer" />
+      <CopyToClipboard :value="password" />
     </div>
 
     <div class="bg-[#2f2d37] w-full flex flex-col gap-4 px-3 py-2 rounded">
@@ -80,7 +80,7 @@ watch([passwordLength, options], generatePassword, { deep: true });
 
       <Slider min="7" max="33" v-model="passwordLength" />
 
-      <div class="options-con">
+      <div class="flex flex-col gap-1">
         <Option
           name="Include Uppercase Letters"
           value="uppercase"
