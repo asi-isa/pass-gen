@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { IconContentCopy } from "@iconify-prerendered/vue-mdi";
 
 import Slider from "./components/Slider.vue";
@@ -50,6 +50,9 @@ function generatePassword() {
 
   password.value = tempPassword.join("");
 }
+
+generatePassword();
+watch([passwordLength, options], generatePassword, { deep: true });
 </script>
 
 <template>
@@ -59,11 +62,13 @@ function generatePassword() {
     <div
       class="bg-[#2f2d37] w-full h-12 flex items-center justify-between px-3 py-2 rounded"
     >
-      <p class="max-w-[80%] overflow-hidden whitespace-nowrap text-ellipsis">
+      <p
+        class="text-2xl tracking-wide let max-w-[80%] overflow-hidden whitespace-nowrap text-ellipsis"
+      >
         {{ password }}
       </p>
 
-      <IconContentCopy class="text-[#A5FFAF] text-xl" />
+      <IconContentCopy class="text-[#A5FFAF] text-xl cursor-pointer" />
     </div>
 
     <div class="bg-[#2f2d37] w-full flex flex-col gap-4 px-3 py-2 rounded">
@@ -108,7 +113,7 @@ function generatePassword() {
         class="bg-[#A5FFAF] text-black py-2 border border-[#a5ffaf] rounded hover:bg-[#2f2d37] hover:text-[#a5ffaf] active:bg-[#2f2d37] active:text-[#a5ffaf] focus:bg-[#2f2d37] focus:text-[#a5ffaf] cursor-pointer transition-colors duration-500"
         @click="generatePassword"
       >
-        <p class="text-center">GENERATE</p>
+        <p class="text-center">REGENERATE</p>
       </div>
     </div>
   </div>
