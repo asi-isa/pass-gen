@@ -4,6 +4,7 @@ import { IconArrowRight, IconContentCopy } from "@iconify-prerendered/vue-mdi";
 
 import Slider from "./components/Slider.vue";
 import Option from "./components/Option.vue";
+import StrengthIndicator from "./components/StrengthIndicator.vue";
 
 const passwordLength = ref(12);
 const options = ref(["lowercase"]);
@@ -31,7 +32,7 @@ function addOrRemoveOption(option) {
       <IconContentCopy class="text-green-400" />
     </div>
 
-    <div class="bg-[#2f2d37] w-full flex flex-col px-3 py-2 rounded">
+    <div class="bg-[#2f2d37] w-full flex flex-col gap-3 px-3 py-2 rounded">
       <div class="flex justify-between items-center">
         <p class="">Character Length</p>
 
@@ -41,7 +42,6 @@ function addOrRemoveOption(option) {
       <Slider min="7" max="33" v-model="passwordLength" />
 
       <div class="options-con">
-        {{ options }}
         <Option
           name="Include Uppercase Letters"
           value="uppercase"
@@ -68,13 +68,7 @@ function addOrRemoveOption(option) {
         />
       </div>
 
-      <div class="strength-con">
-        <p class="strength">STRENGTH</p>
-
-        <div class="strength-indicator-con">
-          <div class="strength-indicator">s</div>
-        </div>
-      </div>
+      <StrengthIndicator :passwordLength="passwordLength" :options="options" />
 
       <div class="btn-con">
         <p class="btn-text">GENERATE</p>
