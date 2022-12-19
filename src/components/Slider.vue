@@ -20,7 +20,7 @@ defineEmits(["update:modelValue"]);
 </template>
 
 <style scoped>
-/* https://css-tricks.com/sliding-nightmare-understanding-range-input/#top-of-site */
+/* https://css-tricks.com/sliding-nightmare-understanding-range-input/ */
 [type="range"] {
   --progress: #a5ffaf;
   --track: #2f2d37;
