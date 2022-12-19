@@ -60,7 +60,7 @@ watch([passwordLength, options], generatePassword, { deep: true });
     <p class="text-xl mb-3">Password Generator</p>
 
     <div
-      class="bg-[#2f2d37] w-full h-12 flex items-center justify-between px-3 py-2 rounded"
+      class="bg-[var(--background-secondary)] w-full h-12 flex items-center justify-between px-3 py-2 rounded"
     >
       <p
         class="text-2xl tracking-wide let max-w-[80%] overflow-hidden whitespace-nowrap text-ellipsis"
@@ -71,11 +71,13 @@ watch([passwordLength, options], generatePassword, { deep: true });
       <CopyToClipboard :value="password" />
     </div>
 
-    <div class="bg-[#2f2d37] w-full flex flex-col gap-4 px-3 py-2 rounded">
+    <div
+      class="bg-[var(--background-secondary)] w-full flex flex-col gap-4 px-3 py-2 rounded"
+    >
       <div class="flex justify-between items-center">
-        <p class="">Character Length</p>
+        <p class="">Password Length</p>
 
-        <p class="text-2xl text-[#A5FFAF]">{{ passwordLength }}</p>
+        <p class="text-2xl text-[var(--accent)]">{{ passwordLength }}</p>
       </div>
 
       <Slider min="7" max="33" v-model="passwordLength" />
@@ -110,7 +112,7 @@ watch([passwordLength, options], generatePassword, { deep: true });
       <StrengthIndicator :passwordLength="passwordLength" :options="options" />
 
       <div
-        class="bg-[#A5FFAF] text-black py-2 border border-[#a5ffaf] rounded hover:bg-[#2f2d37] hover:text-[#a5ffaf] active:bg-[#2f2d37] active:text-[#a5ffaf] focus:bg-[#2f2d37] focus:text-[#a5ffaf] cursor-pointer transition-colors duration-500"
+        class="bg-[var(--accent)] text-black py-2 border border-[var(--accent)] rounded hover:bg-[var(--background-secondary)] hover:text-[var(--accent)] active:bg-[var(--background-secondary)] active:text-[var(--accent)] focus:bg-[var(--background-secondary)] focus:text-[var(--accent)] cursor-pointer transition-colors duration-500"
         @click="generatePassword"
       >
         <p class="text-center">REGENERATE</p>
