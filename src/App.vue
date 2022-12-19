@@ -16,7 +16,11 @@ function addOrRemoveOption(option) {
   if (idx === -1) {
     options.value.push(option);
   } else {
-    options.value.splice(idx, 1);
+    // only remove option if its not the last option
+    // iow dont remove the last option
+    if (options.value.length > 1) {
+      options.value.splice(idx, 1);
+    }
   }
 }
 
