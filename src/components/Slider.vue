@@ -22,7 +22,6 @@ defineEmits(["update:modelValue"]);
 <style scoped>
 /* https://css-tricks.com/sliding-nightmare-understanding-range-input/ */
 [type="range"] {
-  --progress: #a5ffaf;
   --track: #2f2d37;
   --thumb: #ccc;
 
@@ -46,8 +45,8 @@ defineEmits(["update:modelValue"]);
   background: var(--color-background);
 }
 [type="range"]::-webkit-slider-runnable-track {
-  background: linear-gradient(var(--progress), var(--progress)) 0 / var(--sx)
-    100% no-repeat var(--color-background);
+  background: linear-gradient(var(--accent), var(--accent)) 0 / var(--sx) 100%
+    no-repeat var(--color-background);
 }
 [type="range"]::-moz-range-track {
   box-sizing: border-box;
@@ -63,11 +62,11 @@ defineEmits(["update:modelValue"]);
 }
 [type="range"]::-moz-range-progress {
   height: 0.25em;
-  background: var(--progress);
+  background: var(--accent);
 }
 [type="range"]::-ms-fill-lower {
   height: 0.25em;
-  background: var(--progress);
+  background: var(--accent);
 }
 [type="range"]::-webkit-slider-thumb {
   margin-top: -0.625em;
@@ -100,15 +99,15 @@ defineEmits(["update:modelValue"]);
 }
 [type="range"]::-webkit-slider-thumb:hover {
   background: var(--color-background);
-  border: 2px solid var(--progress);
+  border: 2px solid var(--accent);
 }
 [type="range"]::-moz-range-thumb:hover {
   background: var(--color-background);
-  border: 2px solid var(--progress);
+  border: 2px solid var(--accent);
 }
 [type="range"]::-ms-thumb:hover {
   background: var(--color-background);
-  border: 2px solid var(--progress);
+  border: 2px solid var(--accent);
 }
 [type="range"]::-ms-tooltip {
   display: none;
