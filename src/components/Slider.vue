@@ -14,8 +14,103 @@ defineEmits(["update:modelValue"]);
     :min="min"
     :max="max"
     :value="modelValue"
+    :style="{ '--min': min, '--max': max, '--val': modelValue }"
     @input="$emit('update:modelValue', $event.target.value)"
   />
 </template>
 
-<style scoped></style>
+<style scoped>
+/* https://css-tricks.com/sliding-nightmare-understanding-range-input/#top-of-site */
+[type="range"] {
+  --progress: #a5ffaf;
+  --track: #2f2d37;
+  --thumb: #ccc;
+
+  --range: calc(var(--max) - var(--min));
+  --ratio: calc((var(--val) - var(--min)) / var(--range));
+  --sx: calc(0.5 * 1.5em + var(--ratio) * (100% - 1.5em));
+  margin: 0;
+  padding: 0;
+  height: 1.5em;
+  background: transparent;
+  font: 1em/1 arial, sans-serif;
+}
+[type="range"],
+[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+[type="range"]::-webkit-slider-runnable-track {
+  box-sizing: border-box;
+  border: none;
+  height: 0.25em;
+  background: var(--color-background);
+}
+[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(var(--progress), var(--progress)) 0 / var(--sx)
+    100% no-repeat var(--color-background);
+}
+[type="range"]::-moz-range-track {
+  box-sizing: border-box;
+  border: none;
+  height: 0.25em;
+  background: var(--color-background);
+}
+[type="range"]::-ms-track {
+  box-sizing: border-box;
+  border: none;
+  height: 0.25em;
+  background: var(--color-background);
+}
+[type="range"]::-moz-range-progress {
+  height: 0.25em;
+  background: var(--progress);
+}
+[type="range"]::-ms-fill-lower {
+  height: 0.25em;
+  background: var(--progress);
+}
+[type="range"]::-webkit-slider-thumb {
+  margin-top: -0.625em;
+  box-sizing: border-box;
+  border: none;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background: var(--thumb);
+  cursor: pointer;
+}
+[type="range"]::-moz-range-thumb {
+  box-sizing: border-box;
+  border: none;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background: var(--thumb);
+  cursor: pointer;
+}
+[type="range"]::-ms-thumb {
+  margin-top: 0;
+  box-sizing: border-box;
+  border: none;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background: var(--thumb);
+  cursor: pointer;
+}
+[type="range"]::-webkit-slider-thumb:hover {
+  background: var(--color-background);
+  border: 2px solid var(--progress);
+}
+[type="range"]::-moz-range-thumb:hover {
+  background: var(--color-background);
+  border: 2px solid var(--progress);
+}
+[type="range"]::-ms-thumb:hover {
+  background: var(--color-background);
+  border: 2px solid var(--progress);
+}
+[type="range"]::-ms-tooltip {
+  display: none;
+}
+</style>
