@@ -17,7 +17,7 @@ const checked = computed(() => {
 
 <template>
   <div
-    class="flex items-center gap-2 cursor-pointer"
+    class="flex items-center gap-3 cursor-pointer"
     @click="$emit('update:modelValue', value)"
   >
     <div

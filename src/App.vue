@@ -56,7 +56,7 @@ watch([passwordLength, options], generatePassword, { deep: true });
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 items-center w-72">
+  <div class="con flex flex-col gap-4 items-center">
     <p class="text-xl mb-3">Password Generator</p>
 
     <div
@@ -118,3 +118,9 @@ watch([passwordLength, options], generatePassword, { deep: true });
     </div>
   </div>
 </template>
+
+<style scoped>
+.con {
+  width: min(90vw, 420px);
+}
+</style>
