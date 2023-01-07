@@ -113,7 +113,7 @@ watch([passwordLength, options], generatePassword, { deep: true });
         />
       </div>
 
-      <StrengthIndicator :passwordLength="passwordLength" :options="options" />
+      <StrengthIndicator :password="password" />
 
       <div
         class="bg-[var(--accent)] text-black py-2 border border-[var(--accent)] rounded hover:bg-[var(--background-secondary)] hover:text-[var(--accent)] active:bg-[var(--background-secondary)] active:text-[var(--accent)] focus:bg-[var(--background-secondary)] focus:text-[var(--accent)] cursor-pointer transition-colors duration-500"

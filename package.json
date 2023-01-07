@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@iconify-prerendered/vue-mdi": "^0.17.1669013549",
+    "check-password-strength": "^2.0.7",
     "vue": "^3.2.45"
   },
   "devDependencies": {
