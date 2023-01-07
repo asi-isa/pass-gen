@@ -1,44 +1,32 @@
 <script setup>
 import { ref, watchEffect } from "vue";
-import { passwordStrength } from "check-password-strength";
 
-const props = defineProps(["password"]);
+const props = defineProps(["password", "options"]);
 
 // 0 = Too Weak, 1 = Weak, 2 = Medium, 3 = Strong
-const passwordStrengthId = ref(0);
+const passwordStrength = ref(0);
 
-const passwordStrengthOptions = [
-  {
-    id: 0,
-    value: "Too weak",
-    minDiversity: 0,
-    minLength: 0,
-  },
-  {
-    id: 1,
-    value: "Weak",
-    minDiversity: 2,
-    minLength: 8,
-  },
-  {
-    id: 2,
-    value: "Medium",
-    minDiversity: 3,
-    minLength: 13,
-  },
-  {
-    id: 3,
-    value: "Strong",
-    minDiversity: 4,
-    minLength: 18,
-  },
-];
+function evaluatePassword() {
+  const passwordLength = props.password.length;
+  const numOptions = props.options.length;
+
+  if (passwordLength > 16 && numOptions > 3) {
+    return 3;
+  }
+
+  if (passwordLength > 12 && numOptions > 2) {
+    return 2;
+  }
+
+  if (passwordLength > 10 && numOptions > 1) {
+    return 1;
+  }
+
+  return 0;
+}
 
 watchEffect(() => {
-  passwordStrengthId.value = passwordStrength(
-    props.password,
-    passwordStrengthOptions
-  ).id;
+  passwordStrength.value = evaluatePassword();
 });
 </script>
 
@@ -49,19 +37,19 @@ watchEffect(() => {
     <div class="flex gap-1">
       <div
         class="w-2 border border-white transition-colors duration-700"
-        :class="{ 'bg-white': passwordStrengthId > -1 }"
+        :class="{ 'bg-white': passwordStrength > -1 }"
       ></div>
       <div
         class="w-2 border border-white transition-colors duration-700"
-        :class="{ 'bg-white': passwordStrengthId > 0 }"
+        :class="{ 'bg-white': passwordStrength > 0 }"
       ></div>
       <div
         class="w-2 border border-white transition-colors duration-700"
-        :class="{ 'bg-white': passwordStrengthId > 1 }"
+        :class="{ 'bg-white': passwordStrength > 1 }"
       ></div>
       <div
         class="w-2 border border-white transition-colors duration-700"
-        :class="{ 'bg-white': passwordStrengthId > 2 }"
+        :class="{ 'bg-white': passwordStrength > 2 }"
       ></div>
     </div>
   </div>
